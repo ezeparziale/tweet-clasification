@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Twitter sentiment</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    
+    <!-- Style core -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  
+  
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+          <img class="img-fluid mt-3"
+                src="{{ url_for('static', filename='img/logo.png') }}" alt="avatar" width="40"
+                height="40" />
+          <div class="row">
+            <button type="button" class="btn btn-menu rounded-pill mt-3"><i class="bi bi-house-fill"></i> Home</button>
+            <button type="button" class="btn btn-menu rounded-pill mt-3"><i class="bi bi-hash"></i> Explorer</button>
+            <button type="button" class="btn btn-menu rounded-pill mt-3"><i class="bi bi-bell"></i> Notifications</button>
+            <button type="button" class="btn btn-menu rounded-pill mt-3"><i class="bi bi-envelope"></i> Messages</button>
+            <button type="button" class="btn btn-menu rounded-pill mt-3"><i class="bi bi-bookmark"></i> Bookmarks</button>
+            <button type="button" class="btn btn-menu rounded-pill mt-3"><i class="bi bi-card-list"></i> Lists</button>
+            <button type="button" class="btn btn-menu rounded-pill mt-3"><i class="bi bi-person"></i> Profile</button>
+            <button type="button" class="btn btn-menu rounded-pill mt-3"><i class="bi bi-three-dots"></i> More</button>
+            <button type="button" class="btn btn-tweet btn-lg rounded-pill mt-3">Tweet</button>
+          </div>
+        </div>
+
+        <div class="col-5 border-end border-start border-light border-3">
+          <div class="card text-center border-0">
+            <div class="d-flex justify-content-between">
+              <div class="p-2">
+                <h5><strong>Home</strong></h5>
+              </div>
+              <div class="p-2">
+                <h5><i class="bi bi-stars"></i></h5>
+              </div>
+            </div>
+            
+            <div class="d-flex flex-start w-100">               
+              <img class="rounded-circle mt-3 ms-3"
+                src="{{ url_for('static', filename='img/avatar.png') }}" alt="avatar" width="40"
+                height="40" />
+              <div class="card-body">
+                <form method="POST" action="/">
+                  {{ form.csrf_token }}
+                  <div class="form-floating mb-3">
+                    {{ form.tweet(class="form-control") }}
+                    <label for="floatingInput">{{ form.tweet.label }}</label>
+                  </div>
+                  <div class="text-end">
+                    {{ form.submit(class="btn btn-tweet rounded-pill") }}
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+
+          {% if prediction %}
+
+            <div class="card text-center border-0">
+              <div class="d-flex flex-start w-100">               
+                <img class="rounded-circle mt-3 ms-3"
+                  src="{{ url_for('static', filename='img/avatar.png') }}" alt="avatar" width="40"
+                  height="40" />
+                <div class="card-body">
+                  <div class="row">
+                    <div class="text-start">
+                      <div class="d-flex">
+                          <h6><strong>My App</strong></h6>
+                        <div class="ms-1">
+                          <h6><text-muted>@myapp</text-muted></h6>
+                        </div>
+                        <div class="ms-1">
+                          <img class="rounded-circle"
+                            src="{{ url_for('static', filename='img/verified.png') }}" alt="avatar" width="16"
+                            height="16" />                    
+                        </div>
+                        <div class="ms-1">
+                          <h6><text-muted>1h</text-muted></h6>
+                        </div>
+                      </div>
+                      <p>{{ prediction.text }} </p>
+                    </div>
+                  </div>
+                    {% if prediction.pred == 0 %}
+                      <div class="alert alert-danger mt-3" role="alert">
+                        {{ prediction.label }}
+                      </div>
+                    {% else %}
+                      <div class="alert alert-success mt-3" role="alert">
+                        {{ prediction.label }}
+                      </div>
+                    {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+        </div>
+
+        <div class="col-3">
+          <input class="form-control mr-sm-2 mt-1 rounded-pill bg-light" type="search" placeholder="Search Twitter" aria-label="Search Twitter">
+        </div>
+
+      </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+body {
+    font-size: 1rem;
+    line-height: 1.5;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Lato', sans-serif;
+}
+
+.btn-tweet {
+    background: #00A0EC;
+    border-radius: 0;
+    color: #fff;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #00A0EC;
+    font-weight : bold ;
+}
+
+.btn-tweet:hover {
+    background: #0090D5;
+    border-radius: 0;
+    color: #fff;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #0090D5;
+    font-weight : bold;
+}
+
+.btn-menu {
+    background: #fff;
+    border-radius: 0;
+    color: #000000;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff;
+    /* font-weight : bold; */
+    text-align: left;
+    font-size: 20px;
+}
+
+.btn-menu:hover {
+    background: #E7E7E8;
+    border-radius: 0;
+    color: #000000;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff;
+    text-align: left;
+    font-size: 20px;
+}
+
+hr {
+    height: 1px;
+    background-color: #ccc;
+    border: none;
+}
