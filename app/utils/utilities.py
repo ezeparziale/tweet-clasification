@@ -1,9 +1,8 @@
-import re
 import pickle
+import re
 
 # nltk
 from nltk.stem import WordNetLemmatizer
-
 
 lemmatizer = WordNetLemmatizer()
 # grouping together the inflected forms ("better" -> "good")

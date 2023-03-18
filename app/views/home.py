@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, url_for
-from app.forms.form import TweetForm
 import requests
+from flask import Blueprint, render_template, url_for
+
+from app.forms.form import TweetForm
 
 home_bp = Blueprint("home", __name__)
 

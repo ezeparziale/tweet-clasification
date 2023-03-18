@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+
 from app.utils.utilities import predict_pipeline
 
 predict_bp = Blueprint("predict", __name__)
